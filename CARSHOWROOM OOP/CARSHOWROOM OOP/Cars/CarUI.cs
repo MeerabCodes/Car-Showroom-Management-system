@@ -35,6 +35,8 @@ namespace CarShowroom.Cars
                     case "5": DeleteCar(); break;
                     case "6": SellCar(); break;
                     case "7": ShowSalesReport(); break;
+                   case "8":SearchByPriceAndBrand();break;
+                    case "9":MatchingRecSum();break;
                     case "0": running = false; break;
                     default: Console.WriteLine("Invalid option."); break;
                 }
@@ -52,6 +54,8 @@ namespace CarShowroom.Cars
             Console.WriteLine("5. Delete a car");
             Console.WriteLine("6. Sell a car to a customer");
             Console.WriteLine("7. Sales report");
+            Console.WriteLine("8.Search car by price and brand");//Q2 Filter...
+            Console.WriteLine("9.Matching records summary");
             Console.WriteLine("0. Back");
             Console.Write("Choose an option: ");
         }
@@ -99,6 +103,13 @@ namespace CarShowroom.Cars
             Console.WriteLine("===== ALL CARS =====");
             PrintCars(carService.GetAll());
         }
+        private void MatchingRecSum()
+        {
+            Console.WriteLine();
+            Console.WriteLine(" View matching records:");
+            PrintCars(carService.GetMatchingRec());
+
+        }
 
         private void SearchCars()
         {
@@ -110,6 +121,23 @@ namespace CarShowroom.Cars
 
             PrintCars(carService.SearchByBrand(text, false));
         }
+        private void SearchByPriceAndBrand()
+        {
+            Console.WriteLine();
+            Console.WriteLine("===== SEARCH CARS =====");
+
+            Console.Write("Brand to search for: ");
+            string text = Console.ReadLine();
+            Console.WriteLine("Price to search for");
+            float price = float.Parse(Console.ReadLine());
+            Console.WriteLine("Enter above or below");
+            string choice = Console.ReadLine();
+
+
+            PrintCars(carService.SearchByPriceAndBrand(text,price,choice, false));
+        }
+
+
 
         // ---------- Update ----------
 

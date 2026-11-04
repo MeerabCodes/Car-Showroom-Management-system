@@ -74,6 +74,19 @@ namespace CarShowroom.Cars
         {
             return repo.GetAll();
         }
+        public List<Car> GetMatchingRec()
+        {
+            while (true)
+            {
+               /* for(int i = 0; i < repo.GetAll().Length(); i++)
+                {
+                    if (car.Brand[i] == car.Brand[i + 1])
+                    {
+                        reurn 
+                    }
+                }*/
+            }
+        }
 
         public Car GetById(int id)
         {
@@ -126,6 +139,65 @@ namespace CarShowroom.Cars
                 }
             }
             return result;
+        }
+        public List<Car> SearchByPriceAndBrand(string text,float price,string choice, bool onlyAvailable)
+        {
+            List<Car> result = new List<Car>();
+
+            foreach (Car car in repo.GetAll())
+            {
+                if (onlyAvailable && car.IsSold)
+                {
+                    continue;
+                }
+                if (choice == "above")
+                {
+                    if (car.Brand.ToLower().Contains(text.ToLower()) && (price > car.Price || price == car.Price))
+                    {
+                        result.Add(car);
+                    }
+                }
+                else if(choice == "below")
+                {
+                    if (car.Brand.ToLower().Contains(text.ToLower()) && (price < car.Price || price == car.Price))
+                    {
+                        result.Add(car);
+                    }
+
+                }
+                else
+                {
+                    result.Add(car);
+                }
+            }
+            return result;
+        }
+
+        public List<Car> SearchByPrice(float text1,string choice, bool onlyAvailable)
+        {
+            List<Car> result1 = new List<Car>();
+            
+
+            foreach (Car car in repo.GetAll())
+            {
+                if (onlyAvailable && car.IsSold)
+                {
+                    continue;
+                }
+
+                if (choice =="Above")
+                {
+                    if(car.Price >= text1 )
+                    {
+                        result1.Add(car);
+                    }
+                    
+                }
+
+                
+            }
+            return result1;
+
         }
 
         // Available cars that cost no more than maxPrice.
