@@ -40,9 +40,9 @@ namespace CarShowroom
                 Console.WriteLine("0. Exit");
                 Console.Write("Choose an option: ");
 
-                string choice = Console.ReadLine();
+                string Choice = Console.ReadLine();
 
-                switch (choice)
+                switch (Choice)
                 {
                     case "1": adminUI.Run(); break;
                     case "2": customerUI.Run(); break;

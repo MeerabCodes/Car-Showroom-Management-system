@@ -27,5 +27,7 @@ namespace CarShowroom.Admins
         {
             return Id + "|" + FullName + "|" + Username + "|" + Password;
         }
+        //public override string ToString(){return ${ID},{FullName},{Username},{Password}}
+
     }
 }
